@@ -233,9 +233,9 @@ The frontend starts at `http://localhost:5173` with automatic API proxying to `h
 
 ## 8. Cloud Deployment Links
 
-- **Live Frontend (Vercel)**: `https://uk-wind-eval.vercel.app` *(or your custom deployed URL)*
-- **Live Backend API (Render / Heroku)**: `https://uk-wind-eval-backend.onrender.com`
-- **Interactive API Documentation**: `https://uk-wind-eval-backend.onrender.com/docs`
+- **Live Frontend (Vercel)**: `https://frontend-krishna-18.vercel.app` (or [Preview Deployment](https://frontend-d6no34q15-krishna-18.vercel.app))
+- **Live Backend API (Render)**: `https://kjhwr-backend.onrender.com`
+- **Interactive API Documentation**: `https://kjhwr-backend.onrender.com/docs`
 
 ---
 
