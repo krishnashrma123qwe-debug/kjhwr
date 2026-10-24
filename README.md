@@ -7,7 +7,7 @@
 
 ## 1. Executive Summary & Market Context
 
-In Great Britain's wholesale electricity market, utility suppliers serve consumer demand by purchasing power across bilateral contracts, power exchanges (EPEX SPOT GB & Nord Pool), and within the Balancing Mechanism. 
+In Great Britain's wholesale electricity market, utility suppliers serve consumer demand by purchasing power across bilateral contracts, power exchanges (EPEX SPOT GB & Nord Pool), and within the Balancing Mechanism.
 
 For delivery on Day $D$, Day-Ahead market participants must submit bids and lock orders before **Gate Closure on Day $D-1$** (typically **12:00 UTC** on EPEX SPOT / Nord Pool). Because renewable generation from wind is weather-dependent and volatile, energy traders cannot wait for intraday actuals—they must rely on the **National Grid ESO (NESO) Day-Ahead wind generation forecast** published prior to $D-1$ 12:00 UTC.
 
@@ -79,9 +79,13 @@ flowchart TD
 
 ### Day $D-1$ Gate Closure Alignment Rule
 For a delivery settlement period $T$ occurring on Day $D$:
+
 $$\text{Cutoff Time} = \text{Date}(D-1) + \text{Cutoff Hour (default 12:00 UTC)}$$
+
 We filter all forecasts for delivery time $T$ where:
+
 $$\text{publishTime} \le \text{Cutoff Time}$$
+
 The application selects the latest available forecast published prior to that timestamp. Any forecast generated after 12:00 UTC on $D-1$ was not available to Day-Ahead traders and is strictly excluded from Day-Ahead evaluation.
 
 ### Half-Hourly vs Hourly Resolution Handling
@@ -113,7 +117,8 @@ To solve this commercial problem, the portal includes an interactive **Day-Ahead
 
 1. **Naive Procurement Strategy**:
    $$\text{Thermal Procured} = \max(0, \text{Demand} - \text{Raw Wind Forecast})$$
-   - Results in frequent physical shortfall when actual wind fails to materialize.
+   Results in frequent physical shortfall when actual wind fails to materialize.
+
 2. **GridBricks Optimized Strategy**:
    $$\text{De-biased Wind} = \max(0, \text{Wind Forecast} - \text{Mean Bias})$$
    $$\text{Recommended Procurement} = \max(0, \text{Demand} - \text{De-biased Wind}) + \text{Reserve Buffer}$$
@@ -125,7 +130,7 @@ To solve this commercial problem, the portal includes an interactive **Day-Ahead
 ## 6. Directory Structure
 
 ```
-gridbricks-wind-eval/
+kjhwr/
 ├── backend/
 │   ├── app/
 │   │   ├── api/
@@ -180,15 +185,16 @@ gridbricks-wind-eval/
 ## 7. How to Start the Application
 
 ### Option A: Using Docker (Recommended Single-Command Spin Up)
-Ensure Docker and Docker Compose are installed:
+
 ```bash
 # Clone the repository
-git clone https://github.com/<your-anonymous-repo-name>/kjhwr.git
+git clone https://github.com/krishnashrma123qwe-debug/kjhwr.git
 cd kjhwr
 
 # Start backend and frontend containers
 docker compose up --build
 ```
+
 - **Frontend**: Accessible at `http://localhost:3000`
 - **Backend API**: Accessible at `http://localhost:8000`
 - **Interactive Swagger Docs**: Accessible at `http://localhost:8000/docs`
@@ -203,6 +209,7 @@ cd backend
 
 # Create and activate virtual environment
 python -m venv venv
+
 # Windows:
 venv\Scripts\activate
 # Linux/macOS:
@@ -233,9 +240,9 @@ The frontend starts at `http://localhost:5173` with automatic API proxying to `h
 
 ## 8. Cloud Deployment Links
 
-- **Live Frontend (Vercel)**: `https://frontend-krishna-18.vercel.app` (or [Preview Deployment](https://frontend-d6no34q15-krishna-18.vercel.app))
-- **Live Backend API (Render)**: `https://kjhwr-backend.onrender.com`
-- **Interactive API Documentation**: `https://kjhwr-backend.onrender.com/docs`
+- **Live Frontend (Vercel)**: https://frontend-d6no34q15-krishna-18.vercel.app
+- **Live Backend API (Render)**: https://kjhwr-backend.onrender.com
+- **Interactive API Documentation**: https://kjhwr-backend.onrender.com/docs
 
 ---
 
@@ -255,5 +262,3 @@ In accordance with the challenge guidelines:
 - **AI Tools Used**: Claude 3.5 Sonnet and GitHub Copilot were utilized as developer productivity assistants.
 - **Nature of AI Assistance**: Used for initial boilerplate scaffolding, repetitive Tailwind CSS utility styling, and syntax verification.
 - **Human Implementation**: All UK electricity market domain modeling (gate closure cutoff logic, Elexon BMRS API integration, settlement period handling, quantitative metric definitions, and procurement optimization equations) was conceptualized, designed, implemented, and validated by the author.
-#   k j h w r  
- 
